@@ -1,18 +1,19 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
+    <h1>Hello App!</h1>
+    <p>
+      <!-- 使用指令 v-link 进行导航。 -->
+      <a v-link="{ path: '/foo' }">Go to Foo</a>
+      <a v-link="{ path: '/bar' }">Go to Bar</a>
+    </p>
+    <!-- 路由外链 -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      msg: 'Hello Vue!'
-    }
-  }
-}
+  import Vue from 'vue'
+  import VueRouter from 'vue-router'
 </script>
 
 <style>

@@ -28,7 +28,15 @@ module.exports = {
         query: {
           name: '[name].[ext]?[hash]'
         }
-      }
+      },
+      {
+        test: /\.css$/,
+        loader: 'style!css'
+      },
+      {
+        test: /\.less$/,
+        loader: 'style!css!less'
+      },
     ]
   },
   devServer: {
