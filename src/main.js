@@ -4,8 +4,7 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 import index from './App.vue'
-import FooCpt from './views/foo.vue'
-import BarCpt from './views/bar.vue'
+import components from './views/components/components.vue'
 
 //开启debug模式
 Vue.config.debug = true;
@@ -23,13 +22,9 @@ router.map({//定义路由映射
         component:index,//引用的组件名称，对应上面使用`import`导入的组件
         //component:require("components/app.vue")//还可以直接使用这样的方式也是没问题的。不过会没有import集中引入那么直观
     },
-    '/foo': {
-        name:'foo',
-        component: FooCpt
-    },
-    '/bar': {
-        name:'bar',
-        component: BarCpt
+    '/components': {
+        name:'components',
+        component: components
     }
 });
 router.redirect({//定义全局的重定向规则。全局的重定向会在匹配当前路径之前执行。

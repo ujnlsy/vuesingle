@@ -1,5 +1,6 @@
 var path = require('path')
 var webpack = require('webpack')
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     entry: './src/main.js',
@@ -60,6 +61,14 @@ module.exports = {
             css: 'style!css!autoprefixer'
         }
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: 'index.html',
+            chunks: ['App'],
+            inject: 'body'
+        })
+    ],
     // 配置babel转化成es5的语法
     babel: {
         presets: ['es2015'],

@@ -2,10 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>vuesingle</title>
+    <title>vue component</title>
   </head>
   <body>
     <div id="app">
+        <header>
+            <a id="logo" href="https://vuejs.org" target="_blank"></a>
+            <ul id="nav">
+                <li v-link="{ name: 'index' }">首页</li>
+                <li v-link="{ name: 'components' }">组件</li>
+            </ul>
+        </header>
         <router-view></router-view>
     </div>
     <script src="dist/build.js"></script>
