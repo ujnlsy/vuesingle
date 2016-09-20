@@ -23,6 +23,11 @@
 </template>
 <style rel="stylesheet/less" lang="less">
     .header-cpt{
+        background: #fff;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.25);
+        padding: 25px 60px;
+        position: relative;
+        z-index: 2;
         #logo{
             display: inline-block;
             line-height: 40px;

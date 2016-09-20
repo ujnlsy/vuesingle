@@ -8,11 +8,17 @@ var gulp = require('gulp'),
     notify = require('gulp-notify'),
     plumber = require('gulp-plumber');
 
-gulp.task('server', () => {
+gulp.task('server', ['less'], () => {
     connect.server({
         port: 8282,
+        root: 'src',
         livereload: true
     })
+});
+
+gulp.task('html', () => {
+    gulp.src('index.html')
+        .pipe(connect.reload());
 });
 
 gulp.task('less', () => {
@@ -25,8 +31,9 @@ gulp.task('less', () => {
         .pipe(gulp.dest('dist/css'));
 });
 
-gulp.task('watchLess', () => {
+gulp.task('watch', () => {
+    gulp.watch(['src/views/components/*.vue', 'src/views/components/common/*.vue'], ['html']);
     gulp.watch('src/assets/*.less', ['less'])
 });
 
-gulp.task('dev', ['server', 'watchLess']);
+gulp.task('dev', ['server', 'watch']);
