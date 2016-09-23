@@ -1,13 +1,14 @@
 var path = require('path')
 var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
+var _ = require('underscore')
 
 module.exports = {
-    entry: './src/main.js',
+    entry: ['webpack-dev-server/client?http://localhost:8080', 'webpack/hot/only-dev-server', './src/main.js'],
     output: {
         path: path.resolve(__dirname, './dist'),
         publicPath: '/dist/',
-        filename: 'build.js'
+        filename: 'build.js',
     },
     resolveLoader: {
         root: path.join(__dirname, 'node_modules'),
@@ -73,27 +74,6 @@ module.exports = {
     babel: {
         presets: ['es2015'],
         plugins: ['transform-runtime']
-    },
-    devServer: {
-        historyApiFallback: true,
-        noInfo: true
-    },
-    devtool: '#eval-source-map'
+    }
 }
 
-if (process.env.NODE_ENV === 'production') {
-    module.exports.devtool = '#source-map';
-    // http://vue-loader.vuejs.org/en/workflow/production.html
-    module.exports.plugins = (module.exports.plugins || []).concat([
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: '"production"'
-            }
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        })
-    ])
-}

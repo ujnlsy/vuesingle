@@ -1,20 +1,16 @@
 var gulp = require('gulp'),
 
-    connect = require('gulp-connect'),
-
     less = require('gulp-less'),
     cssmin = require('gulp-minify-css'),
     sourcemap = require('gulp-sourcemaps'),
     notify = require('gulp-notify'),
-    plumber = require('gulp-plumber');
+    plumber = require('gulp-plumber'),
 
-gulp.task('server', ['less'], () => {
-    connect.server({
-        port: 8282,
-        root: 'src',
-        livereload: true
-    })
-});
+    webpack = require('webpack'),
+    webpackConfig = require('./webpack.config.js');
+
+
+
 
 gulp.task('html', () => {
     gulp.src('index.html')
@@ -32,7 +28,7 @@ gulp.task('less', () => {
 });
 
 gulp.task('watch', () => {
-    gulp.watch(['src/views/components/*.vue', 'src/views/components/common/*.vue'], ['html']);
+    gulp.watch(['src/views/components/*.vue', 'src/views/components/common/*.vue'], ['webpack', 'html']);
     gulp.watch('src/assets/*.less', ['less'])
 });
 
